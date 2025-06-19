@@ -47,10 +47,15 @@ export default defineConfig({
     },
     server: {
         proxy: {
-            '^/weatherforecast': {
+           /* '^/weatherforecast': {
                 target,
                 secure: false
-            }
+            }*/
+            '/api': { // Assuming your .NET API endpoints start with /api
+              target: 'http://localhost:8080', // Or whatever port your .NET server runs on locally
+              changeOrigin: true,
+              rewrite: (path) => path.replace(/^\/api/, ''),
+            },
         },
         port: parseInt(env.DEV_SERVER_PORT || '51099'),
         https: {
