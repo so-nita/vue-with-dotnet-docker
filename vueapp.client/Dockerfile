@@ -1,15 +1,15 @@
-﻿# Stage 1: Build the Vue application
-FROM node:20-alpine AS build
+﻿# Build stage
+FROM node:lts-alpine AS build
 WORKDIR /app
-COPY package*.json ./
+COPY package.json .
 RUN npm install
 COPY . .
-RUN npm run build
+#RUN npm run build
+RUN DOCKER=true npm run build
 
-#RUN npm rebuild @rollup/rollup
 
-# Stage 2: Serve the Vue application with Nginx
-FROM nginx:alpine AS final
+# Serve stage
+FROM nginx:stable-alpine
 COPY --from=build /app/dist /usr/share/nginx/html
-EXPOSE 80
+EXPOSE 8180
 CMD ["nginx", "-g", "daemon off;"]
