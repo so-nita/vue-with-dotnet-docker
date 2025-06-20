@@ -5,7 +5,7 @@ services:
     build:
       context: ./vueapp.client
       dockerfile: Dockerfile
-    container_name: vue_client
+    container_name: vue_client 
     ports:
       - "8081:80" # Host port 8081 → Vue container's port 80
     networks:

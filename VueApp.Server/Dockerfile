@@ -4,9 +4,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 # Copy the server project file and restore dependencies
-#COPY VueApp.Server/VueApp.Server.csproj VueApp.Server/
 COPY VueApp.Server.csproj ./
-#RUN dotnet restore VueApp.Server/VueApp.Server.csproj
 RUN dotnet restore VueApp.Server.csproj
 # Copy the entire solution and build
 COPY . .
