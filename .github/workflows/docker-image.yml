@@ -14,5 +14,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - uses: action/setup-node@v2
+      with: 
+        node-version: 22
+    - uses: keita-hino/vue-tsc-action@main
+
+    
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag vueapp:$(date +%s)
